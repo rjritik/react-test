@@ -1,8 +1,13 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = () => {
+  const { loginWithRedirect, user, isAuthenticated, isLoading } = useAuth0();
+  console.log("user", user);
+  console.log("isAuthenticated", isAuthenticated);
+  console.log("isLoading", isLoading);
   return (
     <div className="d-flex align-items-center justify-content-center vh-100">
       <div className="login-form">
@@ -34,7 +39,10 @@ const Login = () => {
           <p>Or login with:</p>
           <div>
             {/* Add social login icons and links */}
-            <Button variant="light" className="me-2 text-danger">
+            <Button
+              variant="light"
+              className="me-2 text-danger"
+              onClick={() => loginWithRedirect()}>
               <i className="fab fa-google"></i> Google
             </Button>
             <Button variant="light" className="me-2 text-primary">
